@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Setting KernelSU from backslashxx
-curl -LSs "https://raw.githubusercontent.com/backslashxx/KernelSU/main/kernel/setup.sh" | bash -
+curl -LSs "https://raw.githubusercontent.com/backslashxx/KernelSU/master/kernel/setup.sh" | bash -
 
 # Setting toolchain
 if [ ! -d "toolchain" ]; then
