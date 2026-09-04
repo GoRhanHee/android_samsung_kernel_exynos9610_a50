@@ -1,16 +1,19 @@
 #!/bin/bash
 
-# Download Cross Compiler
-git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9  \
- toolchain/gcc/linux-x86/aarch64/aarch64-linux-android-4.9
+# Setting toolchain
+if [ ! -d "toolchain" ]; then
+    # Download Cross Compiler
+    git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9  \
+     toolchain/gcc/linux-x86/aarch64/aarch64-linux-android-4.9
 
-# Download clang-4639204
-mkdir -p toolchain/clang/host/linux-x86/clang-4639204
-wget -O clang-4639204.gz \
- https://github.com/GoRhanHee/android_samsung_kernel_exynos9610_a50/releases/download/clang/clang-4639204.gz
-tar -xzf clang-4639204.gz \
- -C toolchain/clang/host/linux-x86/clang-4639204
-rm -rf clang-4639204.gz
+    # Download clang-4639204
+    mkdir -p toolchain/clang/host/linux-x86/clang-4639204
+    wget -O clang-4639204.gz \
+     https://github.com/GoRhanHee/android_samsung_kernel_exynos9610_a50/releases/download/clang/clang-4639204.gz
+    tar -xzf clang-4639204.gz \
+     -C toolchain/clang/host/linux-x86/clang-4639204
+    rm -rf clang-4639204.gz
+fi
 
 # Setting 
 export ANDROID_BUILD_TOP=$(pwd)
