@@ -39,5 +39,5 @@ CROSS_COMPILE=${GCC_DIR}/bin/aarch64-linux-android- \
 O=out
 "
 
-make ${MAKE_ARGS} exynos9610-a50ks_defconfig || exit 1
+make ${MAKE_ARGS} exynos9610-a50ks_defconfig gorhanhee.config || exit 1
 make ${MAKE_ARGS} -j16 || exit 1
