@@ -44,3 +44,19 @@ O=out
 
 make ${MAKE_ARGS} exynos9610-a50ks_defconfig gorhanhee.config || exit 1
 make ${MAKE_ARGS} -j16 || exit 1
+
+# Cooking Odin flashable file
+mkdir prebuilts/output
+chmod +x ${ANDROID_BUILD_TOP}/prebuilts/*
+
+# Cooking boot.img
+unzip -jo ${ANDROID_BUILD_TOP}/prebuilts/boot.zip boot.img -d ${ANDROID_BUILD_TOP}/prebuilts/
+./magiskboot unpack boot.img
+cp ${ANDROID_BUILD_TOP}/out/arch/arm64/boot/Image ${ANDROID_BUILD_TOP}/prebuilts/kernel
+./magiskboot repack boot.img
+cp ${ANDROID_BUILD_TOP}/prebuilts/new-boot.img ${ANDROID_BUILD_TOP}/prebuilts/output/boot.img
+
+# Cooking flashable file
+cd ${ANDROID_BUILD_TOP}/prebuilts/output
+cp ${ANDROID_BUILD_TOP}/prebuilts/vbmeta.img ${ANDROID_BUILD_TOP}/prebuilts/output/vbmeta.img
+tar -cvf a50_KSU_Odin.tar boot.img vbmeta.img
